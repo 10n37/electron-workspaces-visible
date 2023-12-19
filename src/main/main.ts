@@ -70,6 +70,7 @@ const createWindow = async () => {
   };
 
   mainWindow = new BrowserWindow({
+    type: 'panel',
     show: false,
     width: 1024,
     height: 728,
@@ -79,6 +80,11 @@ const createWindow = async () => {
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
+  });
+
+  mainWindow.setVisibleOnAllWorkspaces(true, {
+    visibleOnFullScreen: true,
+    skipTransformProcessType: true,
   });
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
